@@ -21,6 +21,8 @@ Finder 中對 PDF 按右鍵 → **快速動作 → PDF 2 PNG** → 完成。
 curl -fsSL https://raw.githubusercontent.com/ichiehg0v/pdf-to-png-shortcut/master/install.sh | bash
 ```
 
+> 💡 **資安小提醒**：執行任何 `curl ... | bash` 指令前，建議先在瀏覽器開啟網址，確認腳本內容沒有問題再執行。本專案的 install.sh 內容可以[點這裡直接查看](https://github.com/ichiehg0v/pdf-to-png-shortcut/blob/master/install.sh)。
+
 ### 手動安裝
 
 ```bash

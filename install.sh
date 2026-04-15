@@ -22,11 +22,19 @@ else
 fi
 
 # ── 3. Install Ghostscript ───────────────────────────────────────────────────
-if ! command -v gs &>/dev/null && [[ ! -f /opt/homebrew/bin/gs ]]; then
+GS_CMD="/opt/homebrew/bin/gs"
+if [ ! -x "$GS_CMD" ]; then
+  GS_CMD="/usr/local/bin/gs"
+fi
+
+if [ ! -x "$GS_CMD" ]; then
   echo "👻 Installing Ghostscript..."
   brew install ghostscript
+  # 重新偵測路徑
+  GS_CMD="/opt/homebrew/bin/gs"
+  [ ! -x "$GS_CMD" ] && GS_CMD="/usr/local/bin/gs"
 else
-  echo "✅ Ghostscript found: $(/opt/homebrew/bin/gs --version 2>/dev/null || gs --version)"
+  echo "✅ Ghostscript found: $($GS_CMD --version)"
 fi
 
 # ── 4. Print next steps ──────────────────────────────────────────────────────
