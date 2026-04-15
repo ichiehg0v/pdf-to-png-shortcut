@@ -18,15 +18,15 @@ Finder 中對 PDF 按右鍵 → **快速動作 → PDF 2 PNG** → 完成。
 ### 一行安裝
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/ichiehg0v/pdf-to-png-shortcut/master/install.sh | bash
 ```
 
 ### 手動安裝
 
 ```bash
 # 1. Clone 此 repo
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-cd YOUR_REPO
+git clone https://github.com/ichiehg0v/pdf-to-png-shortcut.git
+cd pdf-to-png-shortcut
 
 # 2. 執行安裝腳本
 bash install.sh
