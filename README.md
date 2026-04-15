@@ -75,6 +75,30 @@ bash install.sh
 
 使用 [Ghostscript](https://www.ghostscript.com/) 將每頁 PDF 渲染為 24-bit RGB PNG，並開啟抗鋸齒（`-dTextAlphaBits=4 -dGraphicsAlphaBits=4`），確保文字與圖形清晰銳利。
 
+## 常見問題
+
+**Q：Finder 右鍵沒有出現「PDF 2 PNG」？**
+先確認 Shortcuts.app 中該捷徑的 ⓘ 設定裡有勾選「Finder」。若還是沒出現，重啟 Finder：按 `Command + Option + Esc`，選擇 Finder，點「重新啟動」。
+
+**Q：執行後沒有產生任何檔案？**
+在終端機測試 Ghostscript 是否正常：
+```bash
+/opt/homebrew/bin/gs --version
+```
+若找不到指令，重新執行 `brew install ghostscript`。
+
+**Q：Ghostscript 安裝失敗？**
+```bash
+brew uninstall ghostscript
+brew install ghostscript
+```
+
+**Q：圖片太模糊？**
+把 `shortcut-script.sh` 裡的 `-r200` 改成 `-r300`，重新在 Shortcuts.app 貼上更新後的腳本內容。
+
+**Q：PNG 檔案太大？**
+把 `-r200` 改成 `-r150` 可以大幅減少檔案大小，螢幕閱讀已經夠用。
+
 ## 移除
 
 ```bash

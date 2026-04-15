@@ -5,6 +5,16 @@ Converts every page of a PDF into individual PNG files via a macOS Shortcuts Qui
 Right-clicking a PDF in Finder exposes a "PDF 2 PNG" option that renders all pages as
 numbered PNGs saved in the same directory as the source PDF.
 
+## Automation Feasibility
+
+⚠️  IMPORTANT for AI agents:
+- Steps 1-4 (environment setup): FULLY AUTOMATABLE via install.sh
+- Steps 5-8 (Shortcuts.app GUI configuration): REQUIRES MANUAL HUMAN INTERACTION
+  * Reason: macOS Shortcuts.app does not expose any CLI or programmatic API
+  * Estimated manual time: 2-3 minutes
+- AI agents should run install.sh to automate steps 1-4, then STOP and prompt
+  the user to complete steps 5-8 manually in Shortcuts.app.
+
 ## How to install (automated)
 Run the following single command on macOS with Homebrew available:
 
@@ -13,6 +23,14 @@ Run the following single command on macOS with Homebrew available:
 The script installs Ghostscript via Homebrew, then prints step-by-step instructions
 for adding the Quick Action inside Shortcuts.app (cannot be fully automated because
 Shortcuts.app does not expose a CLI interface for creating shortcuts).
+
+## Verification
+After setup, verify Ghostscript is working:
+  /opt/homebrew/bin/gs --version
+Expected output: a version number like "10.x.x"
+
+To verify the Quick Action is installed, right-click any PDF in Finder and check
+that "PDF 2 PNG" appears under Quick Actions.
 
 ## Dependencies
 - macOS 12 Monterey or later
@@ -36,12 +54,17 @@ Shortcuts.app does not expose a CLI interface for creating shortcuts).
 ## Manual Shortcuts setup steps (for AI agents automating GUI)
 1. Open /System/Applications/Shortcuts.app
 2. Create new shortcut (Cmd+N)
-3. Open shortcut details (click ⓘ) → enable "Use as Quick Action" → check "Finder"
-4. Add action: "Run Shell Script"
-5. Set Shell = /bin/zsh, Pass input = as arguments
-6. Paste contents of shortcut-script.sh into the script field
-7. Name the shortcut "PDF 2 PNG"
-8. Close window (auto-saves)
+3. Open shortcut details: click the ⓘ button in the top-right corner of the window
+   → In the right sidebar, find "Use as Quick Action" section
+   → Check the "Finder" checkbox
+4. Add action: click the search icon or "+" in the action library (right panel)
+   → Search for "Run Shell Script" → click to add
+5. In the "Run Shell Script" action block:
+   → Shell dropdown (top of the block): select "zsh"
+   → Pass input dropdown (below Shell): select "as arguments"
+   → Script text area: paste the full contents of shortcut-script.sh
+6. Name the shortcut: click the title field at the top of the window, type "PDF 2 PNG"
+7. Close window with Cmd+W (auto-saves, no save dialog)
 
 ## Uninstall
   brew uninstall ghostscript
