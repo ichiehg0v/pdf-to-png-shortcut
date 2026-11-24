@@ -1,11 +1,11 @@
 # PDF 轉 PNG — macOS 快速動作
 
-在 Finder 對任何 PDF 按右鍵，即可將每一頁轉換為獨立的 PNG 檔案，自動儲存在與 PDF 相同的資料夾。
+在 Finder 對 PDF 按右鍵，即可將每一頁轉換為獨立的 PNG。每次轉換會在 PDF 旁新增一個資料夾。
 
 ## 示範
 
 Finder 中對 PDF 按右鍵 → **快速動作 → PDF 2 PNG** → 完成。
-輸出檔案命名為 `檔名_p001.png`、`檔名_p002.png`，依此類推。
+輸出檔案命名為 `page-001.png`、`page-002.png`，依此類推。
 
 ## 系統需求
 
@@ -15,15 +15,7 @@ Finder 中對 PDF 按右鍵 → **快速動作 → PDF 2 PNG** → 完成。
 
 ## 安裝
 
-### 一行安裝
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/ichiehg0v/pdf-to-png-shortcut/master/install.sh | bash
-```
-
-> 💡 **資安小提醒**：執行任何 `curl ... | bash` 指令前，建議先在瀏覽器開啟網址，確認腳本內容沒有問題再執行。本專案的 install.sh 內容可以[點這裡直接查看](https://github.com/ichiehg0v/pdf-to-png-shortcut/blob/master/install.sh)。
-
-### 手動安裝
+先依 [Homebrew 官網](https://brew.sh)的說明安裝 Homebrew。下載專案並查看 `install.sh` 後，執行以下指令。
 
 ```bash
 # 1. Clone 此 repo
@@ -31,14 +23,14 @@ git clone https://github.com/ichiehg0v/pdf-to-png-shortcut.git
 cd pdf-to-png-shortcut
 
 # 2. 執行安裝腳本
-bash install.sh
+zsh install.sh
 ```
 
 執行完後，依照畫面指示在 Shortcuts.app 中加入快速動作（約 1 分鐘）。
 
 ## `install.sh` 做了什麼
 
-1. 檢查 Homebrew，若未安裝則自動安裝
+1. 檢查 Homebrew 是否已安裝
 2. 透過 `brew install ghostscript` 安裝 Ghostscript
 3. 印出需要貼入 Shortcuts.app 的腳本內容與設定步驟
 
@@ -68,9 +60,10 @@ bash install.sh
 `報告.pdf`（共 3 頁）轉換後產生：
 
 ```
-報告_p001.png
-報告_p002.png
-報告_p003.png
+報告_png.a1b2c3/
+  page-001.png
+  page-002.png
+  page-003.png
 ```
 
 ## 運作原理
