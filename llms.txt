@@ -3,22 +3,22 @@
 ## What this project does
 Converts every page of a PDF into individual PNG files via a macOS Shortcuts Quick Action.
 Right-clicking a PDF in Finder exposes a "PDF 2 PNG" option that renders all pages as
-numbered PNGs saved in the same directory as the source PDF.
+numbered PNGs saved in a new output directory beside the source PDF.
 
 ## Automation Feasibility
 
 ⚠️  IMPORTANT for AI agents:
-- Steps 1-4 (environment setup): FULLY AUTOMATABLE via install.sh
+- Install Homebrew separately using the official instructions if it is missing.
 - Steps 5-8 (Shortcuts.app GUI configuration): REQUIRES MANUAL HUMAN INTERACTION
   * Reason: macOS Shortcuts.app does not expose any CLI or programmatic API
   * Estimated manual time: 2-3 minutes
-- AI agents should run install.sh to automate steps 1-4, then STOP and prompt
-  the user to complete steps 5-8 manually in Shortcuts.app.
+- With Homebrew available, the local install.sh can install Ghostscript and
+  print the manual setup steps.
 
 ## How to install (automated)
 Run the following single command on macOS with Homebrew available:
 
-  bash install.sh
+  zsh install.sh
 
 The script installs Ghostscript via Homebrew, then prints step-by-step instructions
 for adding the Quick Action inside Shortcuts.app (cannot be fully automated because
@@ -48,8 +48,8 @@ that "PDF 2 PNG" appears under Quick Actions.
 - Output format: PNG 24-bit RGB (`-sDEVICE=png16m`)
 - Default DPI: 200 (`-r200`); change to 150/300/600 as needed
 - Anti-aliasing: `-dTextAlphaBits=4 -dGraphicsAlphaBits=4`
-- Output naming: `{original_name}_p001.png`, `_p002.png`, etc.
-- Output location: same directory as source PDF
+- Output naming: `page-001.png`, `page-002.png`, etc.
+- Output location: a fresh `{original_name}_png.*` directory beside the source PDF
 
 ## Manual Shortcuts setup steps (for AI agents automating GUI)
 1. Open /System/Applications/Shortcuts.app

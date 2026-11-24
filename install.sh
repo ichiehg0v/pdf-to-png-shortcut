@@ -13,10 +13,10 @@ if [[ "$(uname)" != "Darwin" ]]; then
   exit 1
 fi
 
-# ── 2. Check / install Homebrew ─────────────────────────────────────────────
+# ── 2. Check Homebrew ───────────────────────────────────────────────────────
 if ! command -v brew &>/dev/null; then
-  echo "🍺 Homebrew not found. Installing..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo "🍺 Homebrew not found. Follow the instructions at https://brew.sh, then re-run this script."
+  exit 1
 else
   echo "✅ Homebrew found: $(brew --version | head -1)"
 fi
@@ -34,7 +34,7 @@ if [ ! -x "$GS_CMD" ]; then
   GS_CMD="/opt/homebrew/bin/gs"
   [ ! -x "$GS_CMD" ] && GS_CMD="/usr/local/bin/gs"
 else
-  echo "✅ Ghostscript found: $($GS_CMD --version)"
+  echo "✅ Ghostscript found: $("$GS_CMD" --version)"
 fi
 
 # ── 4. Print next steps ──────────────────────────────────────────────────────
